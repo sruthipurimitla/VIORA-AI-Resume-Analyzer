@@ -1,0 +1,1126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>VIORA | Analyze Resume</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #403b55;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    #fff7df,
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    #e9e1ff,
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #fbfaff,
+                    #edf5ff
+                );
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            height: 70px;
+
+            padding: 0 5%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background:
+                rgba(255,255,255,0.95);
+
+            border-bottom:
+                1px solid #e8e3f1;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 20;
+        }
+
+
+        .logo {
+
+            color: #5541a5;
+
+            text-decoration: none;
+
+            font-size: 25px;
+
+            font-weight: 800;
+        }
+
+
+        .logo span {
+            color: #e4aa21;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .nav-link {
+
+            text-decoration: none;
+
+            color: #665f72;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            padding:
+                9px 13px;
+
+            border-radius: 9px;
+        }
+
+
+        .nav-link:hover {
+
+            background: #f0eaff;
+
+            color: #5943a5;
+        }
+
+
+        .logout {
+
+            background: #f0eaff;
+
+            color: #5943a5;
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+
+            max-width: 1120px;
+
+            min-height:
+                calc(100vh - 70px);
+
+            margin: auto;
+
+            padding:
+                45px 25px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                360px;
+
+            gap: 45px;
+
+            align-items: center;
+        }
+
+
+        /* =========================
+           LEFT CONTENT
+        ========================= */
+
+        .content {
+
+            padding:
+                10px 15px;
+        }
+
+
+        .badge {
+
+            display: inline-block;
+
+            background: #eee7ff;
+
+            color: #6048aa;
+
+            padding:
+                8px 14px;
+
+            border-radius: 18px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            margin-bottom: 17px;
+        }
+
+
+        h1 {
+
+            color: #4e3b9d;
+
+            font-size: 42px;
+
+            line-height: 1.1;
+
+            margin-bottom: 12px;
+        }
+
+
+        h1 span {
+
+            color: #e2a722;
+        }
+
+
+        .intro {
+
+            max-width: 590px;
+
+            color: #777181;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =========================
+           UPLOAD CARD
+        ========================= */
+
+        .upload-card {
+
+            max-width: 590px;
+
+            background:
+                rgba(255,255,255,0.95);
+
+            border:
+                1px solid #e5e0ef;
+
+            border-radius: 21px;
+
+            padding: 27px;
+
+            box-shadow:
+                0 18px 45px
+                rgba(70,55,120,0.08);
+        }
+
+
+        .upload-area {
+
+            border:
+                2px dashed #cfc4ee;
+
+            border-radius: 17px;
+
+            padding:
+                30px 20px;
+
+            text-align: center;
+
+            background:
+                #faf8ff;
+
+            transition: 0.2s;
+
+            cursor: pointer;
+        }
+
+
+        .upload-area:hover {
+
+            background: #f4efff;
+
+            border-color: #a58be0;
+        }
+
+
+        .upload-icon {
+
+            width: 60px;
+
+            height: 60px;
+
+            margin:
+                0 auto 13px;
+
+            border-radius: 16px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #eee7ff;
+
+            font-size: 28px;
+        }
+
+
+        .upload-area h2 {
+
+            color: #5946a4;
+
+            font-size: 18px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .upload-area p {
+
+            color: #908a98;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            margin-bottom: 15px;
+        }
+
+
+        .file-label {
+
+            display: inline-block;
+
+            padding:
+                10px 17px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7952dc,
+                    #63afe5
+                );
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .file-label:hover {
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        #resume {
+
+            display: none;
+        }
+
+
+        .file-name {
+
+            margin-top: 12px;
+
+            color: #6755a1;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            min-height: 16px;
+        }
+
+
+        /* =========================
+           ROLE INPUT
+        ========================= */
+
+        .role-section {
+
+            margin-top: 20px;
+        }
+
+
+        .role-section label {
+
+            display: block;
+
+            color: #574e66;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            margin-bottom: 8px;
+        }
+
+
+        .role-input {
+
+            width: 100%;
+
+            padding:
+                13px 14px;
+
+            border:
+                1px solid #ddd7e9;
+
+            border-radius: 11px;
+
+            background: #fcfbff;
+
+            color: #403b55;
+
+            font-size: 13px;
+
+            outline: none;
+        }
+
+
+        .role-input:focus {
+
+            border-color: #9278df;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(126,94,220,0.10);
+
+            background: white;
+        }
+
+
+        .role-input::placeholder {
+
+            color: #aaa5b0;
+        }
+
+
+        /* =========================
+           ANALYZE BUTTON
+        ========================= */
+
+        .analyze-button {
+
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding:
+                14px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7952dc,
+                    #63afe5
+                );
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 24px
+                rgba(102,76,190,0.18);
+
+            transition: 0.25s;
+        }
+
+
+        .analyze-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 14px 30px
+                rgba(102,76,190,0.25);
+        }
+
+
+        /* =========================
+           RIGHT CHARACTER
+        ========================= */
+
+        .character-section {
+
+            min-height: 500px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            position: relative;
+        }
+
+
+        .character-card {
+
+            width: 100%;
+
+            min-height: 420px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.9),
+                    rgba(245,240,255,0.9)
+                );
+
+            border:
+                1px solid #e6e0f2;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 18px 45px
+                rgba(70,55,120,0.08);
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+
+        .character-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 240px;
+
+            height: 240px;
+
+            border-radius: 50%;
+
+            background: #eee8ff;
+
+            top: -90px;
+
+            right: -80px;
+
+            opacity: 0.8;
+        }
+
+
+        .character-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 190px;
+
+            height: 190px;
+
+            border-radius: 50%;
+
+            background: #fff5d9;
+
+            bottom: -100px;
+
+            left: -70px;
+
+            opacity: 0.7;
+        }
+
+
+        .character {
+
+            width: 270px;
+
+            height: 300px;
+
+            object-fit: contain;
+
+            position: relative;
+
+            z-index: 2;
+
+            filter:
+                drop-shadow(
+                    0 14px 15px
+                    rgba(74,60,125,0.13)
+                );
+
+            transition: 0.3s;
+        }
+
+
+        .character:hover {
+
+            transform:
+                translateY(-6px)
+                scale(1.02);
+        }
+
+
+        .character-title {
+
+            position: relative;
+
+            z-index: 3;
+
+            color: #5844a4;
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            margin-top: 3px;
+        }
+
+
+        .character-text {
+
+            position: relative;
+
+            z-index: 3;
+
+            color: #827b8c;
+
+            font-size: 12px;
+
+            text-align: center;
+
+            max-width: 240px;
+
+            line-height: 1.5;
+
+            margin-top: 7px;
+        }
+
+
+        .sparkle {
+
+            position: absolute;
+
+            z-index: 4;
+
+            color: #e5ad25;
+
+            font-size: 25px;
+
+        }
+
+
+        .sparkle.one {
+
+            top: 55px;
+
+            left: 45px;
+        }
+
+
+        .sparkle.two {
+
+            top: 125px;
+
+            right: 35px;
+        }
+
+
+        .sparkle.three {
+
+            bottom: 70px;
+
+            left: 65px;
+        }
+
+
+        /* =========================
+           FLASH
+        ========================= */
+
+        .flash {
+
+            background: #fff3d8;
+
+            color: #8a641d;
+
+            border:
+                1px solid #f1dca8;
+
+            border-radius: 10px;
+
+            padding:
+                9px 12px;
+
+            margin-bottom: 15px;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .page {
+
+                grid-template-columns: 1fr;
+
+                max-width: 700px;
+
+                gap: 25px;
+            }
+
+
+            .content {
+
+                padding: 0;
+            }
+
+
+            .upload-card {
+
+                max-width: none;
+            }
+
+
+            .character-section {
+
+                min-height: auto;
+            }
+
+
+            .character-card {
+
+                min-height: 380px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                padding:
+                    0 18px;
+            }
+
+
+            .nav-link {
+
+                display: none;
+            }
+
+
+            .page {
+
+                padding:
+                    28px 15px;
+            }
+
+
+            h1 {
+
+                font-size: 34px;
+            }
+
+
+            .upload-card {
+
+                padding: 18px;
+            }
+
+
+            .upload-area {
+
+                padding:
+                    25px 14px;
+            }
+
+
+            .character {
+
+                width: 220px;
+
+                height: 250px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+
+        <a
+            href="{{ url_for('home') }}"
+            class="logo"
+        >
+            🪄 VIORA <span>✨</span>
+        </a>
+
+
+        <div class="nav-links">
+
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="nav-link"
+            >
+                Dashboard
+            </a>
+
+
+            <a
+                href="{{ url_for('results') }}"
+                class="nav-link"
+            >
+                My Analysis
+            </a>
+
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="nav-link logout"
+            >
+                Logout
+            </a>
+
+
+        </div>
+
+
+    </nav>
+
+
+
+    <!-- =========================
+         MAIN PAGE
+    ========================= -->
+
+    <main class="page">
+
+
+        <!-- =========================
+             LEFT CONTENT
+        ========================= -->
+
+        <section class="content">
+
+
+            <div class="badge">
+                📄 RESUME ANALYSIS
+            </div>
+
+
+            <h1>
+                Let's analyze
+                <span>your resume ✨</span>
+            </h1>
+
+
+            <p class="intro">
+
+                Upload your resume and tell VIORA
+                which role you're aiming for.
+                Our AI will analyze your profile and
+                provide personalized career insights.
+
+            </p>
+
+
+
+            <div class="upload-card">
+
+
+                {% with messages = get_flashed_messages() %}
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                            <div class="flash">
+                                {{ message }}
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% endwith %}
+
+
+
+                <form
+                    method="POST"
+                    action="{{ url_for('upload') }}"
+                    enctype="multipart/form-data"
+                >
+
+
+                    <!-- FILE UPLOAD -->
+
+                    <div
+                        class="upload-area"
+                        onclick="document.getElementById('resume').click();"
+                    >
+
+
+                        <div class="upload-icon">
+                            📄
+                        </div>
+
+
+                        <h2>
+                            Upload Your Resume
+                        </h2>
+
+
+                        <p>
+                            PDF or DOCX files are supported.
+                            Choose your latest resume.
+                        </p>
+
+
+                        <label
+                            for="resume"
+                            class="file-label"
+                            onclick="event.stopPropagation();"
+                        >
+                            Choose Resume
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="resume"
+                            name="resume"
+                            accept=".pdf,.docx"
+                            required
+                            onchange="showFileName(this)"
+                        >
+
+
+                        <div
+                            class="file-name"
+                            id="fileName"
+                        ></div>
+
+
+                    </div>
+
+
+
+                    <!-- TARGET ROLE -->
+
+                    <div class="role-section">
+
+
+                        <label for="target_role">
+                            🎯 Target Job Role
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="target_role"
+                            name="target_role"
+                            class="role-input"
+                            placeholder="Example: Python Developer"
+                            required
+                        >
+
+
+                    </div>
+
+
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="submit"
+                        class="analyze-button"
+                    >
+                        ✨ Analyze My Resume
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             RIGHT CHARACTER
+        ========================= -->
+
+        <section class="character-section">
+
+
+            <div class="character-card">
+
+
+                <span class="sparkle one">
+                    ✦
+                </span>
+
+
+                <span class="sparkle two">
+                    ✧
+                </span>
+
+
+                <span class="sparkle three">
+                    ✦
+                </span>
+
+
+                <img
+                    src="{{ url_for('static', filename='images/viora_upload.png') }}"
+                    alt="VIORA Career Companion"
+                    class="character"
+                >
+
+
+                <div class="character-title">
+                    VIORA is ready! ✨
+                </div>
+
+
+                <div class="character-text">
+
+                    I'll help you discover your
+                    strengths and find your next
+                    career direction.
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        function showFileName(input) {
+
+            const fileName =
+                document.getElementById("fileName");
+
+            if (input.files.length > 0) {
+
+                fileName.textContent =
+                    "📎 " + input.files[0].name;
+
+            } else {
+
+                fileName.textContent = "";
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

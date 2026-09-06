@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>VIORA | Your Analysis</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #403b55;
+
+            background:
+                radial-gradient(
+                    circle at 90% 5%,
+                    #eee7ff,
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 5% 90%,
+                    #fff6dc,
+                    transparent 22%
+                ),
+                linear-gradient(
+                    135deg,
+                    #fbfaff,
+                    #edf5ff
+                );
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            height: 70px;
+
+            padding: 0 5%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background:
+                rgba(255,255,255,0.96);
+
+            border-bottom:
+                1px solid #e8e3f1;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 20;
+        }
+
+
+        .logo {
+
+            color: #5541a5;
+
+            text-decoration: none;
+
+            font-size: 25px;
+
+            font-weight: 800;
+        }
+
+
+        .logo span {
+            color: #e4aa21;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .nav-link {
+
+            text-decoration: none;
+
+            color: #665f72;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            padding:
+                9px 13px;
+
+            border-radius: 9px;
+        }
+
+
+        .nav-link:hover {
+
+            background: #f0eaff;
+
+            color: #5943a5;
+        }
+
+
+        .logout {
+
+            background: #f0eaff;
+
+            color: #5943a5;
+        }
+
+
+        /* =========================
+           PAGE LAYOUT
+        ========================= */
+
+        .page {
+
+            max-width: 1280px;
+
+            margin: auto;
+
+            padding:
+                30px 25px 45px;
+
+            display: grid;
+
+            grid-template-columns:
+                215px
+                1fr;
+
+            gap: 25px;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+
+            background:
+                rgba(255,255,255,0.92);
+
+            border:
+                1px solid #e5e0ef;
+
+            border-radius: 19px;
+
+            padding: 20px 13px;
+
+            height: fit-content;
+
+            position: sticky;
+
+            top: 95px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(70,55,120,0.06);
+        }
+
+
+        .side-heading {
+
+            color: #55429e;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+
+            padding:
+                0 10px 13px;
+        }
+
+
+        .side-link {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            width: 100%;
+
+            padding:
+                11px 10px;
+
+            margin-bottom: 4px;
+
+            border-radius: 10px;
+
+            color: #756f7e;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            transition: 0.2s;
+        }
+
+
+        .side-link:hover,
+        .side-link.active {
+
+            background: #eee8ff;
+
+            color: #5b47a7;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+
+            min-width: 0;
+        }
+
+
+        .top-section {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            margin-bottom: 22px;
+        }
+
+
+        .eyebrow {
+
+            display: inline-block;
+
+            padding:
+                7px 12px;
+
+            background: #eee8ff;
+
+            color: #6049a8;
+
+            border-radius: 15px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            margin-bottom: 9px;
+        }
+
+
+        .top-section h1 {
+
+            color: #4d3a9b;
+
+            font-size: 31px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .subtitle {
+
+            color: #807a88;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        .role-pill {
+
+            display: inline-block;
+
+            background: #fff6da;
+
+            color: #8a691e;
+
+            border:
+                1px solid #f1dfac;
+
+            border-radius: 20px;
+
+            padding:
+                9px 14px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            margin-top: 12px;
+        }
+
+
+        /* =========================
+           CHARACTER
+        ========================= */
+
+        .character-wrapper {
+
+            width: 155px;
+
+            height: 155px;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: center;
+
+            position: relative;
+
+            flex-shrink: 0;
+        }
+
+
+        .character {
+
+            width: 150px;
+
+            height: 150px;
+
+            object-fit: contain;
+
+            filter:
+                drop-shadow(
+                    0 10px 13px
+                    rgba(74,60,125,0.13)
+                );
+
+            transition: 0.3s;
+        }
+
+
+        .character:hover {
+
+            transform:
+                translateY(-5px);
+        }
+
+
+        .sparkle {
+
+            position: absolute;
+
+            color: #e5ad25;
+
+            font-size: 20px;
+
+            z-index: 3;
+        }
+
+
+        .sparkle.one {
+
+            top: 12px;
+
+            left: 10px;
+        }
+
+
+        .sparkle.two {
+
+            top: 42px;
+
+            right: 3px;
+        }
+
+
+        .sparkle.three {
+
+            bottom: 20px;
+
+            left: 25px;
+        }
+
+
+        /* =========================
+           METRIC CARDS
+        ========================= */
+
+        .metrics {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 13px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .metric {
+
+            background:
+                rgba(255,255,255,0.95);
+
+            border:
+                1px solid #e6e1ef;
+
+            border-radius: 15px;
+
+            padding:
+                17px;
+
+            min-height: 110px;
+
+            box-shadow:
+                0 9px 25px
+                rgba(70,55,120,0.05);
+        }
+
+
+        .metric-label {
+
+            color: #85808d;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+
+        .metric-value {
+
+            color: #5844a2;
+
+            font-size: 27px;
+
+            font-weight: 800;
+
+            margin-bottom: 5px;
+        }
+
+
+        .metric-detail {
+
+            color: #96909c;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================
+           ANALYSIS CARDS
+        ========================= */
+
+        .analysis-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 16px;
+        }
+
+
+        .analysis-card {
+
+            background:
+                rgba(255,255,255,0.95);
+
+            border:
+                1px solid #e6e1ef;
+
+            border-radius: 17px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 10px 28px
+                rgba(70,55,120,0.05);
+        }
+
+
+        .analysis-card.full {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        .analysis-card h2 {
+
+            color: #5744a2;
+
+            font-size: 16px;
+
+            margin-bottom: 11px;
+        }
+
+
+        .analysis-card p {
+
+            color: #746e7d;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            white-space: pre-line;
+        }
+
+
+        /* =========================
+           LISTS
+        ========================= */
+
+        .analysis-card ul {
+
+            padding-left: 19px;
+        }
+
+
+        .analysis-card li {
+
+            color: #746e7d;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            margin-bottom: 5px;
+        }
+
+
+        /* =========================
+           RAW AI ANALYSIS
+        ========================= */
+
+        .ai-analysis {
+
+            margin-top: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f6f1ff,
+                    #f0f8ff
+                );
+
+            border:
+                1px solid #e0d9f1;
+
+            border-radius: 17px;
+
+            padding: 21px;
+        }
+
+
+        .ai-analysis h2 {
+
+            color: #5744a2;
+
+            font-size: 17px;
+
+            margin-bottom: 11px;
+        }
+
+
+        .ai-text {
+
+            color: #625d6b;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+
+            white-space: pre-wrap;
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty {
+
+            background:
+                white;
+
+            border:
+                1px solid #e6e1ef;
+
+            border-radius: 18px;
+
+            padding: 35px;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 28px
+                rgba(70,55,120,0.05);
+        }
+
+
+        .empty h2 {
+
+            color: #5844a2;
+
+            font-size: 20px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .empty p {
+
+            color: #817b89;
+
+            font-size: 13px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .button {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            padding:
+                11px 17px;
+
+            border-radius: 10px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7952dc,
+                    #63afe5
+                );
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .metrics {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .page {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .sidebar {
+
+                position: static;
+
+                display: flex;
+
+                gap: 5px;
+
+                overflow-x: auto;
+
+                padding: 10px;
+            }
+
+
+            .side-heading {
+
+                display: none;
+            }
+
+
+            .side-link {
+
+                white-space: nowrap;
+
+                margin: 0;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                padding:
+                    0 18px;
+            }
+
+
+            .nav-link {
+
+                display: none;
+            }
+
+
+            .page {
+
+                padding:
+                    22px 15px 35px;
+            }
+
+
+            .top-section {
+
+                display: block;
+            }
+
+
+            .character-wrapper {
+
+                margin:
+                    15px auto 0;
+            }
+
+
+            .metrics {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .analysis-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .analysis-card.full {
+
+                grid-column: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+
+        <a
+            href="{{ url_for('home') }}"
+            class="logo"
+        >
+            🪄 VIORA <span>✨</span>
+        </a>
+
+
+        <div class="nav-links">
+
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="nav-link"
+            >
+                Dashboard
+            </a>
+
+
+            <a
+                href="{{ url_for('upload') }}"
+                class="nav-link"
+            >
+                Analyze Resume
+            </a>
+
+
+            <a
+                href="{{ url_for('logout') }}"
+                class="nav-link logout"
+            >
+                Logout
+            </a>
+
+
+        </div>
+
+
+    </nav>
+
+
+
+    <!-- =========================
+         PAGE
+    ========================= -->
+
+    <div class="page">
+
+
+        <!-- =========================
+             SIDEBAR
+        ========================= -->
+
+        <aside class="sidebar">
+
+
+            <div class="side-heading">
+                Analysis Overview
+            </div>
+
+
+            <a
+                href="#summary"
+                class="side-link active"
+            >
+                ✨ Summary
+            </a>
+
+
+            <a
+                href="#skills"
+                class="side-link"
+            >
+                💡 Skills Analysis
+            </a>
+
+
+            <a
+                href="#missing"
+                class="side-link"
+            >
+                🔍 Missing Skills
+            </a>
+
+
+            <a
+                href="#career"
+                class="side-link"
+            >
+                🧭 Career Suggestions
+            </a>
+
+
+            <a
+                href="#projects"
+                class="side-link"
+            >
+                💻 Project Ideas
+            </a>
+
+
+            <a
+                href="#interview"
+                class="side-link"
+            >
+                🎤 Interview Prep
+            </a>
+
+
+        </aside>
+
+
+
+        <!-- =========================
+             MAIN
+        ========================= -->
+
+        <main class="main">
+
+
+            {% if analysis %}
+
+
+            <!-- TOP -->
+
+            <section class="top-section">
+
+
+                <div>
+
+                    <div class="eyebrow">
+                        ✨ AI-POWERED RESUME ANALYSIS
+                    </div>
+
+
+                    <h1>
+                        Your VIORA Analysis ✨
+                    </h1>
+
+
+                    <p class="subtitle">
+
+                        Here's what VIORA discovered
+                        from your resume.
+
+                    </p>
+
+
+                    {% if target_role %}
+
+                        <div class="role-pill">
+
+                            🎯 Target Role:
+                            {{ target_role }}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- RESULTS CHARACTER -->
+
+                <div class="character-wrapper">
+
+
+                    <span class="sparkle one">
+                        ✦
+                    </span>
+
+
+                    <span class="sparkle two">
+                        ✧
+                    </span>
+
+
+                    <span class="sparkle three">
+                        ✦
+                    </span>
+
+
+                    <img
+                        src="{{ url_for('static', filename='images/viora_results.png') }}"
+                        alt="VIORA presenting your analysis"
+                        class="character"
+                    >
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- METRICS -->
+
+            <section class="metrics">
+
+
+                <div class="metric">
+
+                    <div class="metric-label">
+                        OVERALL SCORE
+                    </div>
+
+                    <div class="metric-value">
+
+                        {% if analysis is mapping and analysis.get('overall_score') %}
+                            {{ analysis.get('overall_score') }}%
+                        {% else %}
+                            —
+                        {% endif %}
+
+                    </div>
+
+                    <div class="metric-detail">
+                        Resume profile strength
+                    </div>
+
+                </div>
+
+
+
+                <div class="metric">
+
+                    <div class="metric-label">
+                        STRENGTHS
+                    </div>
+
+                    <div class="metric-value">
+
+                        {% if analysis is mapping and analysis.get('strengths') %}
+                            {{ analysis.get('strengths')|length }}
+                        {% else %}
+                            —
+                        {% endif %}
+
+                    </div>
+
+                    <div class="metric-detail">
+                        Key areas identified
+                    </div>
+
+                </div>
+
+
+
+                <div class="metric">
+
+                    <div class="metric-label">
+                        MISSING SKILLS
+                    </div>
+
+                    <div class="metric-value">
+
+                        {% if analysis is mapping and analysis.get('missing_skills') %}
+                            {{ analysis.get('missing_skills')|length }}
+                        {% else %}
+                            —
+                        {% endif %}
+
+                    </div>
+
+                    <div class="metric-detail">
+                        Skills to consider learning
+                    </div>
+
+                </div>
+
+
+
+                <div class="metric">
+
+                    <div class="metric-label">
+                        MATCH SCORE
+                    </div>
+
+                    <div class="metric-value">
+
+                        {% if analysis is mapping and analysis.get('match_score') %}
+                            {{ analysis.get('match_score') }}%
+                        {% else %}
+                            —
+                        {% endif %}
+
+                    </div>
+
+                    <div class="metric-detail">
+                        Target role compatibility
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ANALYSIS -->
+
+            <section class="analysis-grid">
+
+
+                <!-- SUMMARY -->
+
+                <div
+                    class="analysis-card full"
+                    id="summary"
+                >
+
+                    <h2>
+                        ✨ Resume Summary
+                    </h2>
+
+
+                    {% if analysis is mapping and analysis.get('summary') %}
+
+                        <p>
+                            {{ analysis.get('summary') }}
+                        </p>
+
+                    {% elif analysis is mapping and analysis.get('current_skills') %}
+
+                        <p>
+                            {{ analysis.get('current_skills') }}
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            {{ analysis }}
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- SKILLS -->
+
+                <div
+                    class="analysis-card"
+                    id="skills"
+                >
+
+                    <h2>
+                        💡 Skills Analysis
+                    </h2>
+
+
+                    {% if analysis is mapping and analysis.get('skills') %}
+
+                        <ul>
+
+                            {% for skill in analysis.get('skills') %}
+
+                                <li>
+                                    {{ skill }}
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    {% elif analysis is mapping and analysis.get('current_skills') %}
+
+                        <p>
+                            {{ analysis.get('current_skills') }}
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            Your skills have been reviewed
+                            as part of the AI analysis.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- MISSING SKILLS -->
+
+                <div
+                    class="analysis-card"
+                    id="missing"
+                >
+
+                    <h2>
+                        🔍 Missing Skills
+                    </h2>
+
+
+                    {% if analysis is mapping and analysis.get('missing_skills') %}
+
+                        <ul>
+
+                            {% for skill in analysis.get('missing_skills') %}
+
+                                <li>
+                                    {{ skill }}
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    {% elif analysis is mapping and analysis.get('skill_gaps') %}
+
+                        <p>
+                            {{ analysis.get('skill_gaps') }}
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            No specific missing-skill
+                            information was returned.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- CAREER -->
+
+                <div
+                    class="analysis-card"
+                    id="career"
+                >
+
+                    <h2>
+                        🧭 Career Suggestions
+                    </h2>
+
+
+                    {% if analysis is mapping and analysis.get('career_suggestions') %}
+
+                        <ul>
+
+                            {% for career in analysis.get('career_suggestions') %}
+
+                                <li>
+                                    {{ career }}
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    {% elif analysis is mapping and analysis.get('career_paths') %}
+
+                        <p>
+                            {{ analysis.get('career_paths') }}
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            Use your target role,
+                            strengths, and skill gaps
+                            to guide your next career step.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- PROJECTS -->
+
+                <div
+                    class="analysis-card"
+                    id="projects"
+                >
+
+                    <h2>
+                        💻 Project Ideas
+                    </h2>
+
+
+                    {% if analysis is mapping and analysis.get('project_ideas') %}
+
+                        <ul>
+
+                            {% for project in analysis.get('project_ideas') %}
+
+                                <li>
+                                    {{ project }}
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    {% elif analysis is mapping and analysis.get('recommended_projects') %}
+
+                        <p>
+                            {{ analysis.get('recommended_projects') }}
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            Build practical projects that
+                            demonstrate the skills required
+                            for your target role.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <!-- INTERVIEW -->
+
+                <div
+                    class="analysis-card"
+                    id="interview"
+                >
+
+                    <h2>
+                        🎤 Interview Preparation
+                    </h2>
+
+
+                    {% if analysis is mapping and analysis.get('interview_prep') %}
+
+                        <p>
+                            {{ analysis.get('interview_prep') }}
+                        </p>
+
+                    {% elif analysis is mapping and analysis.get('interview_preparation') %}
+
+                        <p>
+                            {{ analysis.get('interview_preparation') }}
+                        </p>
+
+                    {% else %}
+
+                        <p>
+                            Prepare questions related to
+                            your projects, technical skills,
+                            problem solving, and target role.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- FULL AI RESPONSE -->
+
+            {% if analysis is string %}
+
+                <section class="ai-analysis">
+
+                    <h2>
+                        🤖 VIORA's AI Analysis
+                    </h2>
+
+                    <div class="ai-text">
+                        {{ analysis }}
+                    </div>
+
+                </section>
+
+            {% endif %}
+
+
+
+            {% else %}
+
+
+            <!-- EMPTY STATE -->
+
+            <section class="empty">
+
+
+                <h2>
+                    No Analysis Yet ✨
+                </h2>
+
+
+                <p>
+                    Upload your resume to let VIORA
+                    create your personalized career analysis.
+                </p>
+
+
+                <a
+                    href="{{ url_for('upload') }}"
+                    class="button"
+                >
+                    📄 Analyze My Resume
+                </a>
+
+
+            </section>
+
+
+            {% endif %}
+
+
+        </main>
+
+
+    </div>
+
+
+</body>
+
+</html>

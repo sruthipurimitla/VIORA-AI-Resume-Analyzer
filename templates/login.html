@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>VIORA | Login</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #403b55;
+
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    #fff7df,
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    #e9e1ff,
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #fffdfb,
+                    #edf4ff
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            height: 72px;
+
+            padding: 0 6%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background:
+                rgba(255,255,255,0.94);
+
+            border-bottom:
+                1px solid #ebe7f4;
+
+            position: relative;
+
+            z-index: 10;
+        }
+
+
+        .logo {
+
+            color: #5541a5;
+
+            text-decoration: none;
+
+            font-size: 25px;
+
+            font-weight: 800;
+        }
+
+
+        .logo span {
+
+            color: #e5aa21;
+        }
+
+
+        .back {
+
+            color: #5946a5;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            padding:
+                9px 15px;
+
+            border-radius: 10px;
+
+            transition: 0.2s;
+        }
+
+
+        .back:hover {
+
+            background: #f0eaff;
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+
+            max-width: 1180px;
+
+            min-height:
+                calc(100vh - 72px);
+
+            margin: auto;
+
+            padding:
+                45px 25px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap: 50px;
+
+            align-items: center;
+        }
+
+
+        /* =========================
+           LEFT BRANDING
+        ========================= */
+
+        .intro {
+
+            padding:
+                10px 20px;
+        }
+
+
+        .badge {
+
+            display: inline-block;
+
+            padding:
+                9px 16px;
+
+            border-radius: 20px;
+
+            background: #eee6ff;
+
+            color: #5943a5;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 18px;
+        }
+
+
+        .intro h1 {
+
+            font-size: 50px;
+
+            line-height: 1.05;
+
+            color: #4d399f;
+
+            margin-bottom: 12px;
+        }
+
+
+        .intro h1 span {
+
+            display: block;
+
+            color: #e4a820;
+        }
+
+
+        .tagline {
+
+            color: #634bb3;
+
+            font-size: 22px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+        }
+
+
+        .description {
+
+            color: #706b79;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            max-width: 470px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 11px;
+
+            max-width: 450px;
+        }
+
+
+        .feature {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding:
+                12px 14px;
+
+            background:
+                rgba(255,255,255,0.85);
+
+            border:
+                1px solid #ece8f5;
+
+            border-radius: 13px;
+
+            box-shadow:
+                0 6px 18px
+                rgba(80,65,130,0.05);
+        }
+
+
+        .feature-icon {
+
+            width: 37px;
+
+            height: 37px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #f0e9ff;
+
+            font-size: 18px;
+
+            flex-shrink: 0;
+        }
+
+
+        .feature strong {
+
+            display: block;
+
+            color: #5744a4;
+
+            font-size: 13px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .feature small {
+
+            color: #8c8793;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           LOGIN CARD
+        ========================= */
+
+        .login-area {
+
+            display: flex;
+
+            justify-content: center;
+        }
+
+
+        .login-card {
+
+            width: 100%;
+
+            max-width: 460px;
+
+            padding:
+                38px 40px;
+
+            background:
+                rgba(255,255,255,0.97);
+
+            border:
+                1px solid #e9e4f3;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 25px 65px
+                rgba(72,58,125,0.12);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .login-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+
+            height: 150px;
+
+            border-radius: 50%;
+
+            background: #f3edff;
+
+            right: -65px;
+
+            top: -65px;
+        }
+
+
+        .login-card h2 {
+
+            position: relative;
+
+            color: #4e3b9d;
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .subtitle {
+
+            position: relative;
+
+            color: #898390;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            margin-bottom: 27px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+
+            margin-bottom: 18px;
+        }
+
+
+        label {
+
+            display: block;
+
+            color: #554d65;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding:
+                13px 14px;
+
+            border:
+                1px solid #ddd8ea;
+
+            border-radius: 11px;
+
+            background: #fcfbff;
+
+            color: #403b55;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+
+        input:focus {
+
+            border-color: #9278df;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(126,94,220,0.10);
+
+            background: white;
+        }
+
+
+        input::placeholder {
+
+            color: #aaa5b0;
+        }
+
+
+        .login-button {
+
+            width: 100%;
+
+            border: none;
+
+            padding:
+                14px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7952dc,
+                    #63afe5
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 9px 22px
+                rgba(102,76,190,0.18);
+
+            transition: 0.25s;
+        }
+
+
+        .login-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 13px 28px
+                rgba(102,76,190,0.25);
+        }
+
+
+        /* =========================
+           SIGNUP LINK
+        ========================= */
+
+        .signup-text {
+
+            text-align: center;
+
+            color: #8b8692;
+
+            font-size: 13px;
+
+            margin-top: 20px;
+        }
+
+
+        .signup-text a {
+
+            color: #6047ae;
+
+            font-weight: 800;
+
+            text-decoration: none;
+        }
+
+
+        .signup-text a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        .footer {
+
+            text-align: center;
+
+            color: #aaa4b1;
+
+            font-size: 12px;
+
+            margin-top: 22px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           CHARACTER
+        ========================= */
+
+        .character-area {
+
+            position: relative;
+
+            height: 190px;
+
+            margin-top: 5px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: flex-end;
+        }
+
+
+        .character {
+
+            width: 175px;
+
+            height: 175px;
+
+            object-fit: contain;
+
+            position: relative;
+
+            z-index: 2;
+
+            filter:
+                drop-shadow(
+                    0 10px 12px
+                    rgba(75,60,120,0.12)
+                );
+
+            transition: 0.3s;
+        }
+
+
+        .character:hover {
+
+            transform:
+                translateY(-5px)
+                scale(1.02);
+        }
+
+
+        .character-sparkle {
+
+            position: absolute;
+
+            color: #efb72e;
+
+            font-size: 24px;
+
+            z-index: 3;
+        }
+
+
+        .s1 {
+
+            top: 18px;
+
+            left: 25%;
+        }
+
+
+        .s2 {
+
+            top: 55px;
+
+            right: 24%;
+        }
+
+
+        .s3 {
+
+            bottom: 25px;
+
+            left: 30%;
+        }
+
+
+        /* =========================
+           FLASH MESSAGE
+        ========================= */
+
+        .flash {
+
+            background: #fff3d8;
+
+            color: #8a641d;
+
+            border:
+                1px solid #f1dca8;
+
+            border-radius: 10px;
+
+            padding:
+                10px 12px;
+
+            margin-bottom: 16px;
+
+            font-size: 13px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .page {
+
+                grid-template-columns: 1fr;
+
+                max-width: 650px;
+
+                gap: 25px;
+
+                padding-top: 35px;
+            }
+
+
+            .intro {
+
+                text-align: center;
+
+                padding: 0;
+            }
+
+
+            .description {
+
+                margin-left: auto;
+
+                margin-right: auto;
+            }
+
+
+            .features {
+
+                margin-left: auto;
+
+                margin-right: auto;
+
+                text-align: left;
+            }
+
+
+            .intro h1 {
+
+                font-size: 43px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .navbar {
+
+                padding:
+                    0 20px;
+            }
+
+
+            .logo {
+
+                font-size: 21px;
+            }
+
+
+            .page {
+
+                padding:
+                    30px 15px;
+            }
+
+
+            .intro h1 {
+
+                font-size: 37px;
+            }
+
+
+            .tagline {
+
+                font-size: 19px;
+            }
+
+
+            .login-card {
+
+                padding:
+                    28px 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+        <a
+            href="{{ url_for('home') }}"
+            class="logo"
+        >
+            🪄 VIORA <span>✨</span>
+        </a>
+
+
+        <a
+            href="{{ url_for('home') }}"
+            class="back"
+        >
+            ← Home
+        </a>
+
+    </nav>
+
+
+
+    <!-- =========================
+         PAGE
+    ========================= -->
+
+    <main class="page">
+
+
+        <!-- =========================
+             LEFT INTRO
+        ========================= -->
+
+        <section class="intro">
+
+
+            <div class="badge">
+                ✨ Your AI Career Companion
+            </div>
+
+
+            <h1>
+                Welcome
+                <span>Back! 👋</span>
+            </h1>
+
+
+            <div class="tagline">
+                Your career adventure continues.
+            </div>
+
+
+            <p class="description">
+
+                Turn your resume into a roadmap
+                for your dream career with the
+                help of VIORA.
+
+            </p>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🔍
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Discover your skills
+                        </strong>
+
+                        <small>
+                            Understand what you already do well.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📈
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Find what to improve
+                        </strong>
+
+                        <small>
+                            Identify skills worth developing.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🚀
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Explore career opportunities
+                        </strong>
+
+                        <small>
+                            Discover possible paths forward.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🎤
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Prepare for interviews
+                        </strong>
+
+                        <small>
+                            Practice for your dream role.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             LOGIN AREA
+        ========================= -->
+
+        <section class="login-area">
+
+
+            <div class="login-card">
+
+
+                <h2>
+                    Login ✨
+                </h2>
+
+
+                <p class="subtitle">
+                    Login to continue your career journey.
+                </p>
+
+
+                {% with messages = get_flashed_messages() %}
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                            <div class="flash">
+                                {{ message }}
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% endwith %}
+
+
+                <form
+                    method="POST"
+                    action="{{ url_for('login') }}"
+                >
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+                        Login ✨
+                    </button>
+
+
+                </form>
+
+
+
+                <p class="signup-text">
+
+                    Don't have an account?
+
+                    <a
+                        href="{{ url_for('signup') }}"
+                    >
+                        Create one
+                    </a>
+
+                </p>
+
+
+
+                <!-- LOGIN CHARACTER -->
+
+                <div class="character-area">
+
+
+                    <span class="character-sparkle s1">
+                        ✦
+                    </span>
+
+                    <span class="character-sparkle s2">
+                        ✧
+                    </span>
+
+                    <span class="character-sparkle s3">
+                        ✦
+                    </span>
+
+
+                    <img
+                        src="{{ url_for('static', filename='images/viora_login.png') }}"
+                        alt="VIORA"
+                        class="character"
+                    >
+
+                </div>
+
+
+
+                <div class="footer">
+
+                    ✨ Believe in your journey.
+                    Build your future. ✨
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

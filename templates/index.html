@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VIORA | Your Career Companion</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: #403b55;
+
+            background:
+                radial-gradient(circle at 10% 20%, #fff7df, transparent 25%),
+                radial-gradient(circle at 90% 15%, #e8e0ff, transparent 30%),
+                linear-gradient(135deg, #fffdfb, #edf4ff);
+
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           DECORATIVE SPARKLES
+        ========================= */
+
+        .sparkle {
+            position: fixed;
+            color: #f2bd35;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .sparkle.one {
+            top: 18%;
+            left: 4%;
+        }
+
+        .sparkle.two {
+            top: 34%;
+            right: 6%;
+            font-size: 30px;
+        }
+
+        .sparkle.three {
+            bottom: 15%;
+            left: 8%;
+        }
+
+        .sparkle.four {
+            bottom: 8%;
+            right: 12%;
+            font-size: 28px;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 72px;
+            background: rgba(255, 255, 255, 0.94);
+            border-bottom: 1px solid #ebe7f4;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 6%;
+
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #5541a5;
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #e5a91d;
+        }
+
+        .login-button {
+            text-decoration: none;
+            color: #5946a5;
+            background: #f0eaff;
+
+            border: 1px solid #e1d7fb;
+            border-radius: 11px;
+
+            padding: 10px 20px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            transition: 0.25s;
+        }
+
+        .login-button:hover {
+            background: #e5dcff;
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            max-width: 1220px;
+            min-height: calc(100vh - 72px);
+
+            margin: auto;
+
+            padding: 55px 35px 50px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.05fr
+                0.95fr;
+
+            gap: 55px;
+
+            align-items: center;
+
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =========================
+           LEFT CONTENT
+        ========================= */
+
+        .hero-content {
+            padding-left: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            background: #eee6ff;
+            color: #5943a5;
+
+            padding: 10px 17px;
+
+            border-radius: 22px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            color: #463394;
+
+            font-size: 62px;
+
+            line-height: 1.03;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 17px;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: #e5aa21;
+        }
+
+        .tagline {
+            color: #644bb5;
+
+            font-size: 23px;
+
+            font-weight: 700;
+
+            margin-bottom: 16px;
+        }
+
+        .description {
+            max-width: 610px;
+
+            color: #686273;
+
+            font-size: 16px;
+
+            line-height: 1.75;
+
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap: 12px;
+
+            max-width: 620px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.93);
+
+            border: 1px solid #ece8f5;
+
+            border-radius: 15px;
+
+            padding: 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            box-shadow:
+                0 8px 22px rgba(76, 61, 125, 0.06);
+
+            transition: 0.25s;
+        }
+
+        .feature:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 28px rgba(76, 61, 125, 0.10);
+        }
+
+        .feature-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 11px;
+
+            background: #f1eaff;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+
+            flex-shrink: 0;
+        }
+
+        .feature strong {
+            display: block;
+
+            color: #5541a5;
+
+            font-size: 14px;
+
+            margin-bottom: 4px;
+        }
+
+        .feature small {
+            color: #88818f;
+
+            font-size: 11px;
+
+            line-height: 1.4;
+        }
+
+        /* =========================
+           GET STARTED
+        ========================= */
+
+        .get-started {
+            display: inline-block;
+
+            margin-top: 27px;
+
+            text-decoration: none;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7952dc,
+                    #63afe5
+                );
+
+            padding: 14px 27px;
+
+            border-radius: 12px;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 10px 24px
+                rgba(102, 76, 190, 0.20);
+
+            transition: 0.25s;
+        }
+
+        .get-started:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 14px 30px
+                rgba(102, 76, 190, 0.28);
+        }
+
+        /* =========================
+           CHARACTER AREA
+        ========================= */
+
+        .illustration {
+            min-height: 570px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+        }
+
+        .character-card {
+            width: 440px;
+            min-height: 535px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #e5f4ff,
+                    #eee5ff
+                );
+
+            border: 1px solid #e0d9f4;
+
+            position: relative;
+
+            overflow: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            padding: 35px 25px;
+
+            box-shadow:
+                0 25px 60px
+                rgba(77, 63, 132, 0.13);
+        }
+
+        .character-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            background: rgba(255, 255, 255, 0.45);
+
+            border-radius: 50%;
+
+            top: -100px;
+            right: -70px;
+        }
+
+        .character-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            background: rgba(255, 255, 255, 0.30);
+
+            border-radius: 50%;
+
+            bottom: -110px;
+            left: -70px;
+        }
+
+        .card-sparkle {
+            position: absolute;
+
+            color: #efbb32;
+
+            font-size: 27px;
+
+            z-index: 2;
+        }
+
+        .card-sparkle.one {
+            top: 55px;
+            left: 42px;
+        }
+
+        .card-sparkle.two {
+            top: 115px;
+            right: 45px;
+        }
+
+        .card-sparkle.three {
+            bottom: 170px;
+            left: 55px;
+        }
+
+        .card-sparkle.four {
+            bottom: 100px;
+            right: 48px;
+        }
+
+        .character-image {
+            width: 390px;
+            height: 390px;
+
+            object-fit: contain;
+
+            position: relative;
+
+            z-index: 3;
+
+            filter:
+                drop-shadow(
+                    0 15px 15px
+                    rgba(70, 55, 110, 0.13)
+                );
+
+            transition: 0.3s;
+        }
+
+        .character-image:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .character-card h2 {
+            color: #5543a3;
+
+            font-size: 25px;
+
+            text-align: center;
+
+            margin-top: 3px;
+
+            position: relative;
+
+            z-index: 4;
+        }
+
+        .character-card p {
+            color: #706a7d;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            text-align: center;
+
+            max-width: 320px;
+
+            margin-top: 9px;
+
+            position: relative;
+
+            z-index: 4;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+
+                gap: 35px;
+            }
+
+            .hero-content {
+                padding-left: 0;
+            }
+
+            .description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .features {
+                margin-left: auto;
+                margin-right: auto;
+
+                text-align: left;
+            }
+
+            .illustration {
+                min-height: 520px;
+            }
+
+            .character-card {
+                width: 410px;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .hero {
+                padding:
+                    40px 18px;
+            }
+
+            .hero h1 {
+                font-size: 47px;
+            }
+
+            .tagline {
+                font-size: 19px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .character-card {
+                width: 100%;
+                min-height: 480px;
+            }
+
+            .character-image {
+                width: 320px;
+                height: 330px;
+            }
+
+            .character-card h2 {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Decorative Sparkles -->
+
+    <div class="sparkle one">✦</div>
+    <div class="sparkle two">✧</div>
+    <div class="sparkle three">✦</div>
+    <div class="sparkle four">✧</div>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav class="navbar">
+
+        <a href="{{ url_for('home') }}" class="logo">
+            🪄 VIORA <span>✨</span>
+        </a>
+
+        <a
+            href="{{ url_for('login') }}"
+            class="login-button"
+        >
+            Login
+        </a>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <main class="hero">
+
+
+        <!-- LEFT -->
+
+        <section class="hero-content">
+
+            <div class="badge">
+                ✨ Your AI Career Companion
+            </div>
+
+
+            <h1>
+                AI Resume
+                <span>Analyzer</span>
+            </h1>
+
+
+            <div class="tagline">
+                Your career, your next chapter. 🪄
+            </div>
+
+
+            <p class="description">
+
+                Discover your strengths, identify the
+                skills you need to grow, and get
+                personalized career guidance from
+                your resume.
+
+            </p>
+
+
+            <!-- FEATURES -->
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📄
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Smart Resume Analysis
+                        </strong>
+
+                        <small>
+                            Understand your resume better.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🎯
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Skill Match
+                        </strong>
+
+                        <small>
+                            Find skills for your target role.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🧠
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            AI Insights
+                        </strong>
+
+                        <small>
+                            Get personalized recommendations.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🚀
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Career Guidance
+                        </strong>
+
+                        <small>
+                            Plan your next career step.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- CTA -->
+
+            <a
+                href="{{ url_for('login') }}"
+                class="get-started"
+            >
+                🪄 Get Started →
+            </a>
+
+        </section>
+
+
+
+        <!-- =========================
+             CHARACTER
+        ========================= -->
+
+        <section class="illustration">
+
+
+            <div class="character-card">
+
+
+                <div class="card-sparkle one">
+                    ✦
+                </div>
+
+                <div class="card-sparkle two">
+                    ✧
+                </div>
+
+                <div class="card-sparkle three">
+                    ✦
+                </div>
+
+                <div class="card-sparkle four">
+                    ✧
+                </div>
+
+
+                <img
+                    src="{{ url_for('static', filename='images/viora_home.png') }}"
+                    alt="VIORA Career Companion"
+                    class="character-image"
+                >
+
+
+                <h2>
+                    Meet Your Career Companion
+                </h2>
+
+
+                <p>
+
+                    VIORA helps you turn your resume
+                    into a clear path toward your
+                    dream career.
+
+                </p>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

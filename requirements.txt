@@ -1,0 +1,8 @@
+Flask
+python-dotenv
+requests
+PyMySQL
+pypdf
+python-docx
+Werkzeug
+gunicorn
